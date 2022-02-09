@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Formik, Form} from '.formik';
+import {Formik, Form} from 'formik';
 import Input from './Components/Input'
 
 const Container= styled.div`
@@ -8,7 +8,7 @@ justify-content:center;
 height:100%;
 align-items:center
 `
-const Section=styled.div`
+const Section=styled.section`
   background-color:#eee;
   border-top:solid 7px palevioletred ;
   padding: 20px 25px;
@@ -33,6 +33,9 @@ function App() {
           >
             <Form>
               <Input name='deposit' label='Initial Deposit'/>
+              <Input name='contibution' label='Anual Contribution'/>
+              <Input name='years' label='Years'/>
+              <Input name='rate' label='Estimated Interest Rate'/>
             </Form>
         </Formik>
       </Section>
