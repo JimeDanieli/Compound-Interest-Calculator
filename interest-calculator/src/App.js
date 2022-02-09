@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import {Formik, Form} from '.formik';
+import Input from './Components/Input'
 
+const Container= styled.div`
+display:flex;
+justify-content:center;
+height:100%;
+align-items:center
+`
+const Section=styled.div`
+  background-color:#eee;
+  border-top:solid 7px palevioletred ;
+  padding: 20px 25px;
+  width: 500px;
+  box-shadow: 0px 2px 3 px rgb(0,0,0,0.3)
+`
 function App() {
+  const handleSubmit=()=>{
+    
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Section>
+        <Formik
+          initialValues={{
+            deposit:'',
+            contributions:'',
+            years:'',
+            rate:'',
+          }}
+          onSubmit={handleSubmit}
+          >
+            <Form>
+              <Input name='deposit' label='Initial Deposit'/>
+            </Form>
+        </Formik>
+      </Section>
+    </Container>
   );
 }
 
