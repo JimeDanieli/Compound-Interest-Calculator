@@ -1,7 +1,10 @@
-import styled from 'styled-components';
+import { useState } from 'react';
 import {Formik, Form} from 'formik';
 import Input from './Components/Input';
 import Button from './Components/Button'
+import Section from './Components/Section';
+import Container from './Components/Container';
+import Balance from './Components/Balance'
 
 const compoundInterest=(deposit,contribution,years, rate)=>{
   let total= deposit
@@ -10,10 +13,12 @@ const compoundInterest=(deposit,contribution,years, rate)=>{
   }
   return Math.round(total)
 }
-
+//para poder mostrar el valor que nos devuelve el interes compuesto, vamos a necesitar useState
 function App() {
+  const [balance, setBalance]=useState('')
   const handleSubmit=({deposit, contribution, years, rate})=>{
     const val=compoundInterest(Number(deposit),Number(contribution),Number(years),Number(rate))
+    setBalance(val)
   }
   return (
     <Container>
@@ -35,6 +40,7 @@ function App() {
               <Button>Calculate</Button>
             </Form>
         </Formik>
+        {balance !== '' ?<Balance>Final balance : {balance}</Balance>  : null}
       </Section>
     </Container>
   );

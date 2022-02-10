@@ -9,8 +9,5 @@ const Button =styled.button`
     border-radius:3px;
     cursor:pointer;
 `
-const Button=()=>{
-    
-}
 
 export default Button
