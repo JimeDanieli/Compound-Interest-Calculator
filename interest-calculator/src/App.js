@@ -6,19 +6,25 @@ import Section from './Components/Section';
 import Container from './Components/Container';
 import Balance from './Components/Balance'
 
-const compoundInterest=(deposit,contribution,years, rate)=>{
+const compoundInterest=(deposit, contribution, years, rate)=>{
   let total= deposit
   for(let i =0; i < years; i ++){
-    total=(total + contribution) * (rate + 1)
+    total=(total + contribution) * (rate + 1)//es mas uno porque queremos que sea el total mas el rate. uno representa mi total
   }
   return Math.round(total)
 }
+const formatter =new Intl.NumberFormat('en-US',{
+  style:'currency',
+  currency:'USD',
+  minimumFractionDigits:2,
+  maximumFractionDigits:2,
+})
 //para poder mostrar el valor que nos devuelve el interes compuesto, vamos a necesitar useState
 function App() {
   const [balance, setBalance]=useState('')
   const handleSubmit=({deposit, contribution, years, rate})=>{
     const val=compoundInterest(Number(deposit),Number(contribution),Number(years),Number(rate))
-    setBalance(val)
+    setBalance(formatter.format(val))
   }
   return (
     <Container>
@@ -26,7 +32,7 @@ function App() {
         <Formik
           initialValues={{
             deposit:'',
-            contributions:'',
+            contribution:'',
             years:'',
             rate:'',
           }}
@@ -37,10 +43,10 @@ function App() {
               <Input name='contibution' label='Anual Contribution'/>
               <Input name='years' label='Years'/>
               <Input name='rate' label='Estimated Interest Rate'/>
-              <Button>Calculate</Button>
+              <Button type='submit'>Calculate</Button>
             </Form>
         </Formik>
-        {balance !== '' ?<Balance>Final balance : {balance}</Balance>  : null}
+        {balance !== '' ?<Balance>Final balance: {balance}</Balance>  : null}
       </Section>
     </Container>
   );
