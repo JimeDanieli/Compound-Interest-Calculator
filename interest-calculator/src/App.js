@@ -39,10 +39,10 @@ function App() {
           }}
           onSubmit={handleSubmit}
           validationSchema={Yup.object({
-            deposit: Yup.number().required('Required'),
-            contribution: Yup.number().required('Required'),
-            years: Yup.number().required('Required'),
-            rate: Yup.number().required('Required'),
+            deposit: Yup.number().required('Required').typeError('Must insert a number'),
+            contribution: Yup.number().required('Required').typeError('Must insert a number'),
+            years: Yup.number().required('Required').typeError('Must insert a number'),
+            rate: Yup.number().required('Required').typeError('Must insert a number').min(0,'Miminum value must be greater than 0').max(1, 'Maximum value must be lower than 1'),
           })}
           >
             <Form>
